@@ -48,8 +48,6 @@ export function Hero() {
           <Frame
             src={hero.media.image}
             alt={hero.media.alt}
-            label="Kamo PK"
-            caption="Hero film"
             priority
             sizes="100vw"
             className="h-full w-full"

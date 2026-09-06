@@ -163,11 +163,11 @@
   background-color: var(--color-surface);
   background-image:
     radial-gradient(
-      120% 90% at 70% 0%,
-      color-mix(in oklab, var(--color-violet) 16%, transparent) 0%,
-      transparent 60%
+      110% 80% at 72% 4%,
+      color-mix(in oklab, var(--color-violet) 7%, transparent) 0%,
+      transparent 62%
     ),
-    linear-gradient(180deg, #16121f 0%, #08070c 100%);
+    linear-gradient(180deg, #100e16 0%, #070609 100%);
   isolation: isolate;
 }
 

@@ -12,7 +12,7 @@ export function Pkfx() {
       {/* One restrained ambient wash — the only coloured light on the page */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-40 -top-40 h-[36rem] w-[36rem] rounded-full opacity-30 blur-3xl [background:radial-gradient(circle,rgba(157,0,255,0.42)_0%,transparent_68%)]"
+        className="pointer-events-none absolute -right-40 -top-40 h-[22rem] w-[22rem] rounded-full opacity-12 blur-3xl [background:radial-gradient(circle,rgba(157,0,255,0.42)_0%,transparent_68%)] lg:h-[36rem] lg:w-[36rem] lg:opacity-20"
       />
       <span
         aria-hidden
@@ -43,7 +43,7 @@ export function Pkfx() {
             </div>
           </Reveal>
 
-          <h2 className="display-xl mt-10 max-w-[14ch] text-bone">
+          <h2 className="display-lg mt-10 max-w-[15ch] text-bone">
             <RevealWords text={pkfx.headline} />
           </h2>
 

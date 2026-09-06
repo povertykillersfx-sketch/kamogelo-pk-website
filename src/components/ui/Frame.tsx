@@ -4,7 +4,11 @@ import { cn } from "@/lib/cn";
 type FrameProps = {
   src?: string | null;
   alt: string;
-  /** Text shown inside an empty slot so the layout still reads as art direction. */
+  /**
+   * Ghosted wordmark shown inside an empty slot. Omit it where something else
+   * already sits on top of the slot (the hero headline, a play button) —
+   * otherwise the ghost text reads as a rendering artefact.
+   */
   label?: string;
   caption?: string;
   className?: string;
@@ -58,14 +62,16 @@ function EmptyStill({ label, caption }: { label?: string; caption?: string }) {
   return (
     <div aria-hidden className="absolute inset-0">
       <div className="absolute inset-0 [background:repeating-linear-gradient(115deg,transparent_0px,transparent_9px,rgba(255,255,255,0.022)_9px,rgba(255,255,255,0.022)_10px)]" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
-        <span className="font-display text-[clamp(1.6rem,4vw,3rem)] font-extrabold uppercase leading-none tracking-[-0.04em] text-white/[0.07]">
-          {label ?? "KAMO PK"}
-        </span>
-        {caption ? (
-          <span className="eyebrow text-[0.6rem] text-white/25">{caption}</span>
-        ) : null}
-      </div>
+      {label ? (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
+          <span className="font-display text-[clamp(1.6rem,4vw,3rem)] font-extrabold uppercase leading-none tracking-[-0.04em] text-white/[0.07]">
+            {label}
+          </span>
+          {caption ? (
+            <span className="eyebrow text-[0.6rem] text-white/20">{caption}</span>
+          ) : null}
+        </div>
+      ) : null}
     </div>
   );
 }

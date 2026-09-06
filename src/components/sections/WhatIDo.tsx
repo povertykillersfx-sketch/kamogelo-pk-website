@@ -41,7 +41,8 @@ export function WhatIDo() {
                 />
               </div>
 
-              <h3 className="display-lg mt-16 text-bone md:mt-24">
+              {/* Sized to hold "Entrepreneurship" on one line at every width */}
+              <h3 className="mt-16 font-display text-[clamp(1.75rem,2.35vw,2.15rem)] font-bold uppercase leading-[0.98] tracking-[-0.035em] text-bone md:mt-24">
                 {pillar.title}
               </h3>
 

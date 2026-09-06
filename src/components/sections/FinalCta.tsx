@@ -17,7 +17,7 @@ export function FinalCta() {
         </h2>
 
         <Reveal delay={0.12}>
-          <p className="lede mx-auto mt-8 max-w-md text-balance">
+          <p className="lede mx-auto mt-8 max-w-xl text-balance">
             {finalCta.body}
           </p>
         </Reveal>

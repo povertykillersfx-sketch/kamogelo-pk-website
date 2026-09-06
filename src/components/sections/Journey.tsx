@@ -83,7 +83,7 @@ function HorizontalJourney() {
         <motion.div
           ref={trackRef}
           style={{ x: smoothX }}
-          className="mt-auto flex w-max items-stretch pb-24 will-change-transform"
+          className="my-auto flex w-max items-stretch pb-10 will-change-transform"
         >
           <div className="w-[max(1.25rem,calc((100vw-88rem)/2+4rem))] shrink-0" />
           {journey.map((item, index) => (

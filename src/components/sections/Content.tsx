@@ -137,8 +137,6 @@ function ContentCard({ piece, tall }: { piece: ContentPiece; tall: boolean }) {
     <Frame
       src={poster}
       alt={piece.title}
-      label={piece.category}
-      caption={piece.meta}
       sizes={tall ? "(max-width: 1024px) 100vw, 60vw" : "(max-width: 640px) 100vw, 33vw"}
       className={cn(
         "w-full rounded-sm",

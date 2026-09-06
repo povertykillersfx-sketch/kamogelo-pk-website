@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * KAMO PK — design tokens
+ * Base is a near-black with a trace of violet, inherited from the
+ * PKFX brand. Violet and gold appear only as accents.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-ink: #050407;
+  --color-ink-soft: #08070c;
+  --color-surface: #0b0910;
+  --color-surface-raised: #12101a;
+  --color-hairline: #ffffff14;
+  --color-hairline-strong: #ffffff2b;
+
+  --color-bone: #f4f2ef;
+  --color-bone-dim: #b9b5bf;
+  --color-mute: #9a95a4;
+
+  --color-violet: #9d00ff;
+  --color-violet-soft: #b982ff;
+  --color-gold: #e8b325;
+
+  --font-display: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-editorial: var(--font-instrument-serif), ui-serif, Georgia, serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+/* ------------------------------------------------------------------ *
+ * Base
+ * ------------------------------------------------------------------ */
+@layer base {
+  * {
+    border-color: var(--color-hairline);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-violet) 55%, black);
+    color: var(--color-bone);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-violet-soft);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff1f;
+    border-radius: 999px;
+    border: 3px solid var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffffff33;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Typography helpers
+ * ------------------------------------------------------------------ */
+@utility display-hero {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.82;
+  letter-spacing: -0.045em;
+  font-size: clamp(4rem, 17vw, 17rem);
+  text-transform: uppercase;
+}
+
+@utility display-xl {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  font-size: clamp(2.4rem, 6.4vw, 6rem);
+  text-transform: uppercase;
+}
+
+@utility display-lg {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  font-size: clamp(1.9rem, 4.2vw, 3.6rem);
+  text-transform: uppercase;
+}
+
+@utility display-md {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-mute);
+}
+
+@utility lede {
+  font-size: clamp(1.0625rem, 1.35vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--color-bone-dim);
+}
+
+/* ------------------------------------------------------------------ *
+ * Surfaces & decoration
+ * ------------------------------------------------------------------ */
+@utility shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 88rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2.5rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 4rem;
+  }
+}
+
+@utility hairline-top {
+  border-top: 1px solid var(--color-hairline);
+}
+
+/* Cinematic still: used for every photography slot so empty slots still
+   read as intentional art direction rather than a broken image. */
+@utility still {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-surface);
+  background-image:
+    radial-gradient(
+      110% 80% at 72% 4%,
+      color-mix(in oklab, var(--color-violet) 7%, transparent) 0%,
+      transparent 62%
+    ),
+    linear-gradient(180deg, #100e16 0%, #070609 100%);
+  isolation: isolate;
+}
+
+@utility edge-fade-x {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+/* ------------------------------------------------------------------ *
+ * Motion
+ * ------------------------------------------------------------------ */
+@keyframes kp-scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+@keyframes kp-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes kp-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@utility animate-scroll-cue {
+  animation: kp-scroll-cue 2.4s var(--ease-in-out-quint) infinite;
+}
+
+@utility animate-marquee {
+  animation: kp-marquee 42s linear infinite;
+}
+
+@utility animate-pulse-ring {
+  animation: kp-pulse-ring 2.8s var(--ease-out-expo) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

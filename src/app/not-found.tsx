@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { basePath } from "@/content/site";
 import { ArrowRight, ButtonLink } from "@/components/ui/Button";
 import { Grain } from "@/components/ui/Grain";
 import { Wordmark } from "@/components/site/Wordmark";
@@ -26,7 +27,11 @@ export default function NotFound() {
           there.
         </p>
         <div className="mt-10">
-          <ButtonLink href="/" variant="solid" icon={<ArrowRight />}>
+          <ButtonLink
+            href={`${basePath}/`}
+            variant="solid"
+            icon={<ArrowRight />}
+          >
             Back home
           </ButtonLink>
         </div>

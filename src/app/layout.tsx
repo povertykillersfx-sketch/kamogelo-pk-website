@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Inter_Tight, Instrument_Serif, JetBrains_Mono } from "next/font/google";
-import { site } from "@/content/site";
+import { noindex, site } from "@/content/site";
 import "./globals.css";
 
 const interTight = Inter_Tight({
@@ -64,11 +64,13 @@ export const metadata: Metadata = {
     title: `${site.name} — ${site.role}`,
     description: site.statement,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
-  },
+  robots: noindex
+    ? { index: false, follow: false }
+    : {
+        index: true,
+        follow: true,
+        googleBot: { index: true, follow: true, "max-image-preview": "large" },
+      },
   category: "business",
 };
 

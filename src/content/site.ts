@@ -7,6 +7,17 @@
  * real handle, URL or asset before launch.
  */
 
+/**
+ * Preview deploys (GitHub Pages) serve the site from a different origin and
+ * sub-path than production, so both are overridable at build time. Left unset,
+ * the values below are used as-is.
+ */
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+export const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+/** Marks preview builds so they never compete with production in search. */
+export const noindex = process.env.NEXT_PUBLIC_NOINDEX === "true";
+
 export const site = {
   name: "KAMO PK",
   legalName: "Kamogelo PK",
@@ -17,7 +28,7 @@ export const site = {
   location: "Pretoria, South Africa",
   locationShort: "South Africa",
   // TODO: replace with the production domain.
-  url: "https://kamopk.com",
+  url: siteUrl ?? "https://kamopk.com",
   email: "business@kamopk.com",
   description:
     "Kamogelo PK — trader, entrepreneur and creator from South Africa. Building businesses, trading the financial markets and documenting the journey.",

@@ -54,7 +54,7 @@ export function WhatIDo() {
                 {pillar.points.map((point) => (
                   <li
                     key={point}
-                    className="flex items-center gap-3 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-mute"
+                    className="flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-bone-dim"
                   >
                     <span
                       aria-hidden

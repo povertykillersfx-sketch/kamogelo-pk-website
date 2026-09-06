@@ -27,6 +27,19 @@ export function Footer() {
             <p className="mt-8 max-w-xs text-sm leading-relaxed text-mute">
               {site.statement}
             </p>
+
+            <a
+              href={`mailto:${site.email}`}
+              className="group mt-10 inline-flex items-baseline gap-3 border-b border-hairline-strong pb-2 transition-colors duration-500 hover:border-bone"
+            >
+              <span className="font-display text-lg font-semibold tracking-[-0.01em] text-bone md:text-xl">
+                {site.email}
+              </span>
+              <ArrowUpRight className="h-3 w-3 text-violet-soft transition-transform duration-500 group-hover:translate-x-0.5" />
+            </a>
+            <p className="eyebrow mt-4 text-[0.58rem]">
+              Business inquiries · {site.location}
+            </p>
           </div>
 
           <nav aria-label="Footer" className="lg:col-span-3">

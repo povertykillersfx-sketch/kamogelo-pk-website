@@ -1,8 +1,12 @@
 name: Preview
 
-# Publishes a static export of the site to GitHub Pages so there is a shareable
-# preview URL. The preview is built with NEXT_PUBLIC_NOINDEX so it never
-# competes with the production domain in search results.
+# Builds a static export of the site and publishes it to GitHub Pages so there
+# is a shareable preview URL. The preview is built with NEXT_PUBLIC_NOINDEX so
+# it never competes with the production domain in search results.
+#
+# One-time repo setup, needed before the deploy job can succeed:
+#   Settings → Pages → Build and deployment → Source: GitHub Actions
+# The build job runs and validates the export regardless.
 
 on:
   push:
@@ -35,18 +39,17 @@ jobs:
 
       - run: npm run lint
 
-      - id: pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
+      - run: npm run typecheck
 
+      # Derived rather than read from actions/configure-pages, which needs repo
+      # admin rights the workflow token doesn't have until Pages is enabled.
       - name: Build static export
         run: npm run build
         env:
           NEXT_OUTPUT: export
-          NEXT_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          NEXT_BASE_PATH: /${{ github.event.repository.name }}
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
           NEXT_PUBLIC_NOINDEX: "true"
 
       # Without this, Pages' Jekyll pass drops the _next directory.
